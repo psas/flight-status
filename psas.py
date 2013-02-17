@@ -33,3 +33,7 @@ def add_system_from_form(form):
     r.hset(key, 'name', form['name'])
     r.hset(key, 'desc', form['desc'])
     r.sadd('psas_systems', key)
+
+def delete_system(key):
+    r.delete(key)
+    r.srem('psas_systems', key)

@@ -15,6 +15,9 @@ def mange():
     if request.method == 'POST':
         if request.form['key'] == "NEW":
             psas.add_system_from_form(request.form)
+        if "DELETE" in request.form['key']:
+            key = request.form['key'][6:]
+            psas.delete_system(key)
         else:
             psas.update_system_from_from(request.form)
     systems = views.show_systems()
