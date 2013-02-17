@@ -6,14 +6,14 @@
 {% for system in systems %}
     {% include "system_edit.html" %}
 {% endfor %}
-<div id="systems" class="accordion-group">
+<div id="systemsEdit" class="accordion-group">
   <div class="accordion-heading">
     <span class="accordion-toggle">
       <span class="desc">Add New...</span>
-      <a class="pull-right" data-toggle="collapse" data-parent="#systems" href="#new"><i class="icon-plus-sign"></i></a>
+      <a class="pull-right" data-toggle="collapse" data-parent="#systemsEdit" href="#newSystem"><i class="icon-plus-sign"></i></a>
     </span>
   </div>
-  <div id="new"class="accordion-body collapse">
+  <div id="newSystem" class="accordion-body collapse">
     <div class="accordion-inner">
       <form class="form-horizontal">
 
@@ -41,5 +41,40 @@
   </div>
 </div>
 </div>
+
+<h2>Tags</h2>
+<div class="accordion">
+{% for tag in tags %}
+    {% include "tag_edit.html" %}
+{% endfor %}
+<div id="tagEdit" class="accordion-group">
+  <div class="accordion-heading">
+    <span class="accordion-toggle">
+      <span class="desc">Add New...</span>
+      <a class="pull-right" data-toggle="collapse" data-parent="#tagEdit" href="#newTag"><i class="icon-plus-sign"></i></a>
+    </span>
+  </div>
+  <div id="newTag"class="accordion-body collapse">
+    <div class="accordion-inner">
+      <form class="form-horizontal">
+
+        <div class="control-group">
+          <label class="control-label" for="inputName">Tag</label>
+          <div class="controls">
+            <input type="text" id="inputName" >
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
 
 {% endblock content %}

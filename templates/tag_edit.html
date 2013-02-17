@@ -1,0 +1,28 @@
+<div id="tag{{tag.name}}" class="accordion-group">
+  <div class="accordion-heading">
+    <span class="accordion-toggle">
+      <span class="name">{{ tag.name }}</span>
+      <a class="pull-right" data-toggle="collapse" data-parent="#tag{{tag.name}}" href="#{{tag.name}}"><i class="icon-edit"></i></a>
+    </span>
+  </div>
+  <div id="{{tag.name}}"class="accordion-body collapse">
+    <div class="accordion-inner">
+      <form class="form-horizontal">
+
+        <div class="control-group">
+          <label class="control-label" for="inputName">Tag</label>
+          <div class="controls">
+            <input type="text" id="inputTag" >
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn">Update</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

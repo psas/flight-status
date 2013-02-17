@@ -12,8 +12,10 @@ def index():
 @app.route("/manage")
 def mange():
     systems = views.show_systems()
+    tags = views.show_tags()
     return render_template('manage.html',
-                           systems=systems)
+                           systems=systems,
+                           tags=tags)
 
 @app.route('/favicon.ico')
 def favicon():

@@ -8,3 +8,7 @@ def show_systems():
         l.append(system)
 
     return l
+
+def show_tags():
+    tags = [{"name": "Critical", "color": "Red"}]
+    return tags
