@@ -15,7 +15,7 @@ def mange():
     if request.method == 'POST':
         if request.form['key'] == "NEW":
             psas.add_system_from_form(request.form)
-        if "DELETE" in request.form['key']:
+        elif "DELETE" in request.form['key']:
             key = request.form['key'][6:]
             psas.delete_system(key)
         else:
@@ -31,11 +31,13 @@ def manage_system(system_key):
     if request.method == 'POST':
         if request.form['key'] == "NEW":
             psas.add_part_from_form(request.form, system_key)
-        if "REM" in request.form['key']:
+        elif "REM" in request.form['key']:
             key = request.form['key'][3:]
             psas.remove_part(system_key, key)
-        if request.form['key'] == "ADD":
+        elif request.form['key'] == "ADD":
             psas.add_part_from_form(request.form, system_key)
+        else:
+            psas.update_part_from_form(request.form)
 
     system = views.show_system(system_key)
     parts = views.show_parts(system_key)
@@ -45,6 +47,12 @@ def manage_system(system_key):
                             parts=parts,
                             allparts=all_parts)
 
+@app.route('/parts', methods=['GET', 'POST'])
+def parts():
+    parts = views.show_all_parts()
+    return render_template('part_manage.html',
+                            parts=parts)
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
@@ -52,4 +60,4 @@ def favicon():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run()
+    app.run(host='0.0.0.0') # Enable local network access

@@ -2,6 +2,14 @@
 
 {% block nav %}
 
+<ul class="nav nav-pills">
+  <li class="active">
+    <a href="#">Systems</a>
+  </li>
+  <li><a href="/parts">Parts</a></li>
+  <li><a href="/software">Software</a></li>
+</ul>
+
 <ul class="breadcrumb">
   <li><a href="/manage">Systems</a> <span class="divider">/</span></li>
   <li class="active">{{ system.name }}</li>

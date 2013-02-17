@@ -37,6 +37,7 @@ def get_parts(system):
         p = {}
         p['key'] = key
         p['name'] = r.hget(key, 'name')
+        p['desc'] = r.hget(key, 'desc')
         parts.append(p)
     return parts
 
@@ -49,7 +50,12 @@ def get_all_parts():
         p['name'] = r.hget(key, 'name')
         parts.append(p)
     return parts
-    
+
+def update_part_from_form(form):
+    #TODO: sanitize
+    key = form['key']
+    r.hset(key, 'name', form['name'])
+    r.hset(key, 'desc', form['desc'])
 
 def add_part_from_form(form, system=None):
     #TODO: sanitize

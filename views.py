@@ -23,6 +23,10 @@ def show_parts(key):
     parts = psas.get_parts(key)
     return parts
 
+def show_all_parts():
+    parts = psas.get_all_parts()
+    return parts
+
 def show_tags():
     tags = [{"name": "Critical", "color": "Red"}]
     return tags
