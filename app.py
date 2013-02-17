@@ -4,13 +4,13 @@ import views
 import psas
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def index():
     systems = views.show_systems()
     return render_template('index.html',
                            systems=systems)
 
-@app.route("/manage", methods=['GET', 'POST'])
+@app.route('/manage', methods=['GET', 'POST'])
 def mange():
     if request.method == 'POST':
         if request.form['key'] == "NEW":
@@ -25,6 +25,25 @@ def mange():
     return render_template('manage.html',
                            systems=systems,
                            tags=tags)
+
+@app.route('/manage/<system_key>', methods=['GET', 'POST'])
+def manage_system(system_key):
+    if request.method == 'POST':
+        if request.form['key'] == "NEW":
+            psas.add_part_from_form(request.form, system_key)
+        if "REM" in request.form['key']:
+            key = request.form['key'][3:]
+            psas.remove_part(system_key, key)
+        if request.form['key'] == "ADD":
+            psas.add_part_from_form(request.form, system_key)
+
+    system = views.show_system(system_key)
+    parts = views.show_parts(system_key)
+    all_parts = views.list_all_parts()
+    return  render_template('system_manage.html',
+                            system=system,
+                            parts=parts,
+                            allparts=all_parts)
 
 @app.route('/favicon.ico')
 def favicon():

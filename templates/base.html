@@ -10,8 +10,13 @@
 
     <div id="header">
       <div class="container">
-        <h1>PSAS Flight Status</h1>
-        <p>Countdown: L&minus;105 days</p>
+        <div class="top">
+          <h1>PSAS Flight Status</h1>
+          <p>Countdown: L&minus;105 days</p>
+        </div>
+        <div class="sub">
+          {% block nav %}{% endblock %}
+        </div>
       </div>
     </div>
 

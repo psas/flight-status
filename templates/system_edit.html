@@ -20,14 +20,21 @@
         <div class="control-group">
           <label class="control-label" for="inputDesc">Description</label>
           <div class="controls">
-            <textarea name="desc" rows="3">{{ system.desc }}</textarea>          
+            <textarea name="desc" class="input-xxlarge" rows="3">{{ system.desc }}</textarea>          
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">&nbsp;</label>
+          <div class="controls">
+            <a href="/manage/{{ system.key }}" class="btn">Manage Parts and Software</a>
           </div>
         </div>
 
         <div class="control-group">
           <div class="controls">
-            <button name="key" type="submit" class="btn" value="{{ system.key }}">Update</button>
-            <button name="key" type="submit" class="btn pull-right" value="DELETE{{ system.key }}">Delete</button>
+            <button name="key" type="submit" class="btn btn-primary" value="{{ system.key }}">Update</button>
+            <button name="key" type="submit" class="btn btn-danger pull-right" value="DELETE{{ system.key }}">Delete System</button>
           </div>
         </div>
 

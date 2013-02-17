@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block nav %}
+
+<ul class="breadcrumb">
+  <li><a href="/manage">Systems</a> <span class="divider">/</span></li>
+  <li class="active">{{ system.name }}</li>
+</ul>
+
+{% endblock nav %}
+
+{% block content %}
+
+<h2>{{ system.name }}</h2>
+<p>{{ system.desc }}</p>
+
+<h3>Parts:</h3>
+
+<div class="accordion">
+  {% for part in parts %}
+    {% include "part_edit.html" %}
+  {% endfor %}
+  <div id="partAdd" class="accordion-group">
+    <div class="accordion-heading">
+      <span class="accordion-toggle">
+        <span class="desc">Add Part...</span>
+        <a class="pull-right" data-toggle="collapse" data-parent="#partNew" href="#partNewAdd"><i class="icon-plus-sign"></i></a>
+      </span>
+    </div>
+    <div id="partNewAdd" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <form class="form-horizontal" method="post">
+
+          <div class="control-group">
+            <label class="control-label" for="inputName">Add Part</label>
+            <div class="controls">
+              <div class="input-append">
+                <input name="name" type="text" id="inputName" placeholder="Part Name" autocomplete="off"  
+                    data-provide="typeahead" data-items="5" data-source='[""{% for p in allparts %},"{{ p }}"{% endfor %}]'>
+                <button name="key" class="btn" type="submit" value="NEW">Create New Part </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="controls">
+              <button name="key" type="submit" class="btn btn-primary" value="ADD">Add</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
