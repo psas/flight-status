@@ -1,6 +1,7 @@
 import os
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, request, render_template, send_from_directory
 import views
+import psas
 app = Flask(__name__)
 
 @app.route("/")
@@ -9,8 +10,10 @@ def index():
     return render_template('index.html',
                            systems=systems)
 
-@app.route("/manage")
+@app.route("/manage", methods=['GET', 'POST'])
 def mange():
+    if request.method == 'POST':
+        psas.update_system_from_from(request.form)
     systems = views.show_systems()
     tags = views.show_tags()
     return render_template('manage.html',
