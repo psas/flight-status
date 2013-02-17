@@ -13,7 +13,10 @@ def index():
 @app.route("/manage", methods=['GET', 'POST'])
 def mange():
     if request.method == 'POST':
-        psas.update_system_from_from(request.form)
+        if request.form['key'] == "NEW":
+            psas.add_system_from_form(request.form)
+        else:
+            psas.update_system_from_from(request.form)
     systems = views.show_systems()
     tags = views.show_tags()
     return render_template('manage.html',
