@@ -1,19 +1,12 @@
-{% extends "base.html" %}
-{% block content %}
-
-<h2>Systems</h2>
-<div class="accordion">
-{% for system in systems %}
-    {% include "system_edit.html" %}
-{% endfor %}
 <div id="systems" class="accordion-group">
   <div class="accordion-heading">
     <span class="accordion-toggle">
-      <span class="desc">Add New...</span>
-      <a class="pull-right" data-toggle="collapse" data-parent="#systems" href="#new"><i class="icon-plus-sign"></i></a>
+      <span class="name">{{ system.name }}</span>
+      <span class="desc">{{ system.desc }}</span>
+      <a class="pull-right" data-toggle="collapse" data-parent="#systems" href="#{{system.name}}"><i class="icon-edit"></i></a>
     </span>
   </div>
-  <div id="new"class="accordion-body collapse">
+  <div id="{{system.name}}"class="accordion-body collapse">
     <div class="accordion-inner">
       <form class="form-horizontal">
 
@@ -33,13 +26,11 @@
 
         <div class="control-group">
           <div class="controls">
-            <button type="submit" class="btn">Save</button>
+            <button type="submit" class="btn">Update</button>
           </div>
         </div>
+
       </form>
     </div>
   </div>
 </div>
-</div>
-
-{% endblock content %}
