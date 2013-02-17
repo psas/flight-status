@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h2>Systems Report:</h2>
+<div class="accordion">
+  {% for system in systems %}
+    {% include "system_line.html" %}
+  {% endfor %}
+</div>
+
+{% endblock content %}
