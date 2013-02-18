@@ -21,6 +21,10 @@
     margin: 4px 0;
 }
 
+.countdown {
+    font-family: 'Droid Sans Mono', Courier, monospace;
+}
+
 .name {
     font-weight: bold;
     padding: 0 10px;
