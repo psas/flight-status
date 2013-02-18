@@ -27,7 +27,12 @@
         <div class="control-group">
           <div class="controls">
             <button name="key" type="submit" class="btn btn-primary" value="{{ part.key }}">Update</button>
+            {% if softdelete %}
             <button name="key" type="submit" class="btn btn-danger pull-right" value="REM{{ part.key }}">Remove Part</button>
+            {% else %}
+            <button name="key" type="submit" class="btn btn-danger pull-right" value="DELETE{{ part.key }}">Delete Part</button>
+            {% endif %}
+
           </div>
         </div>
 

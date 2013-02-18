@@ -45,10 +45,19 @@ def manage_system(system_key):
     return  render_template('system_manage.html',
                             system=system,
                             parts=parts,
-                            allparts=all_parts)
+                            allparts=all_parts,
+                            softdelete="True")
 
 @app.route('/parts', methods=['GET', 'POST'])
 def parts():
+    if request.method == 'POST':
+        if request.form['key'] == "NEW":
+            psas.add_part_from_form(request.form)
+        elif "DELETE" in request.form['key']:
+            key = request.form['key'][6:]
+            psas.delete_part(key)
+        else:
+            psas.update_part_from_form(request.form)
     parts = views.show_all_parts()
     return render_template('part_manage.html',
                             parts=parts)

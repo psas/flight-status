@@ -48,6 +48,7 @@ def get_all_parts():
         p = {}
         p['key'] = key
         p['name'] = r.hget(key, 'name')
+        p['desc'] = r.hget(key, 'desc')
         parts.append(p)
     return parts
 
@@ -67,6 +68,11 @@ def add_part_from_form(form, system=None):
 
 def remove_part(system, key):
     r.srem(system+'_parts', key)
+
+def delete_part(key):
+    for system in get_all_systems():
+        remove_part(system['key'], key)
+    r.srem('psas_parts', key)
 
 def update_system_from_from(form):
     #TODO: sanitize
