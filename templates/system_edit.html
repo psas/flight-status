@@ -1,6 +1,7 @@
 <div id="{{ system.key }}Top" class="accordion-group">
   <div class="accordion-heading">
     <span class="accordion-toggle">
+      <span class="label">{{ system.parts_num }} part{% if system.parts_num != 1 %}s{% endif %}</span>
       <span class="name">{{ system.name }}</span>
       <span class="desc">{{ system.desc }}</span>
       <a class="pull-right" data-toggle="collapse" data-parent="#{{ system.key }}Top" href="#{{ system.key }}"><i class="icon-edit"></i></a>

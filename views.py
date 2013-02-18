@@ -5,6 +5,7 @@ def show_systems():
     l = []
     for system in systems:
         system['status'] = "75%"
+        system['parts_num'] = len(system['parts'])
         for part in system['parts']:
             part['status'] = 'Go'
             part['badge'] = "success"
