@@ -21,6 +21,15 @@
     margin: 4px 0;
 }
 
+#logo {
+    background: transparent url('/static/img/remove_before_flight.png') top right no-repeat;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    margin-left: -85px;
+    margin-top: 10px;
+}
+
 .countdown {
     font-family: 'Droid Sans Mono', Courier, monospace;
 }
