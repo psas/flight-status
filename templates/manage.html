@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Edit {{ name }}s</h2>
+
+<div class="accordion">
+{% for entry in collection %}
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        {{entry}}
+        <a class="pull-right"><i class="icon-edit"></i></a>
+      </div>
+      <div class="accordion-body collapse">
+        <div class="accordion-inner">
+            asdf
+        </div>
+      </div>
+    </div>
+{% endfor %}
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <span class="desc">Add new...</span>
+        <a class="pull-right"><i class="icon-plus-sign"></i></a>
+      </div>
+      <div class="accordion-body collapse">
+        <div class="accordion-inner">
+            asdf
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock content %}

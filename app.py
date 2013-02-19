@@ -23,6 +23,14 @@ def admin():
     toplist = views.top_site_list()
     return render_template('admin.html', toplist=toplist)
 
+@app.route('/manage/<taxonomy>')
+def manage(taxonomy):
+    if taxonomy not in models.TAXONOMY['types']:
+        return render_template("404.html"), 404
+    name = views.key2name(taxonomy)
+    collection = views.get_all(taxonomy)
+    return render_template('manage.html', name=name, collection=collection)
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
