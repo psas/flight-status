@@ -14,7 +14,7 @@ def login():
 
 @app.route('/api')
 def api():
-    return render_template('api.html', page="api", api=models.TAXONOMY)
+    return render_template('api.html', page="api", api=views.build_taxonomy())
 
 @app.route('/favicon.ico')
 def favicon():

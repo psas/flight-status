@@ -4,8 +4,9 @@ TAXONOMY = {
         "launch_vehicle": {"contains": ["project"]},
         "ground_systems": {"contains": ["project"]},
         "project": {"contains": ["part", "software"]},
-        "part": {"contains": []},
-        "software": {"contains": []},
+        "part": {"contains": ["status"]},
+        "software": {"contains": ["status"]},
+        "status": {"contains": []},
     },
     "top": {
         "site": "launch"
