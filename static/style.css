@@ -1,23 +1,25 @@
-#header .main {
+.dark {
     background: #0e3262;
     color: #fff;
-    border-bottom: 2px solid #4d6b95;
-    padding-top: 5px;
 }
 
-#header .sub {
+.light {
     background: #f7f7f7;
 }
 
-#header {
+header {
     margin-bottom: 20px;
 }
 
-#header h1 {
+header h1 {
     font-size: 2.0em;
 }
 
-#header .nav {
+header .dark {
+    padding: 10px 0;
+}
+
+header .nav {
     margin: 4px 0;
 }
 
@@ -32,6 +34,10 @@
 
 .countdown {
     font-family: 'Droid Sans Mono', Courier, monospace;
+}
+
+nav .nav li a:hover {
+    background: #ccc;
 }
 
 .name {

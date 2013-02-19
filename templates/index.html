@@ -1,12 +1,20 @@
 {% extends "base.html" %}
+
+{% block nav %}
+
+<ul class="nav nav-pills">
+  <li class="active"><a href="#">Flight Report</a></li>
+  <li><a href="">Projects</a></li>
+  <li><a href="">TODO</a></li>
+  <li><a href="">API</a></li>
+  <li><a href="/about">About</a></li>
+  <li class="login pull-right"><a href="/login"><i class="icon-user icon-white"></i> Login</a></li>
+</ul>
+
+{% endblock nav %}
+
 {% block content %}
 
-
-<h2>Systems Report:</h2>
-<div class="accordion">
-  {% for system in systems %}
-    {% include "system_line.html" %}
-  {% endfor %}
-</div>
+<h2>Flight Report:</h2>
 
 {% endblock content %}
