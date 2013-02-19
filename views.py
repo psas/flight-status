@@ -2,9 +2,6 @@ import models
 
 def traverse(key, view):
     view += "<li>"+key.replace('_',' ').title()
-    if 'fields' in models.TAXONOMY['types'][key]:
-        for field in models.TAXONOMY['types'][key]['fields']:
-            view += " (" + field["name"] + ")"
     view += "<ul>"
     for k in models.TAXONOMY['types'][key]['contains']:
         view = traverse(k, view)
@@ -12,13 +9,20 @@ def traverse(key, view):
     return view
 
 def build_taxonomy():
-    top = models.TAXONOMY['top']['site']
+    top = models.TAXONOMY['top']
 
     view =  "<ul>"
     view += traverse(top, "")
     view += "</ul>"
 
     return view
+
+def list_types():
+    types = []
+    for key in models.TAXONOMY['types']:
+        print key
+        types.append(key.replace('_',' ').title())
+    return types
 
 def top_site_list():
     return ["bangarang"]

@@ -2,8 +2,17 @@
 
 {% block content %}
 
-<h2>Taxonomy:</h2>
+<h2>Taxonomy</h2>
 
+<h3>Types:</h3>
+
+<ul>
+{% for type in typelist %}
+    <li>{{ type }}</li>
+{% endfor %}
+</ul>
+
+<h3>Tree:</h3>
 {{ api|safe }}
 
 {% endblock content %}

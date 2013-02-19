@@ -14,7 +14,9 @@ def login():
 
 @app.route('/api')
 def api():
-    return render_template('api.html', page="api", api=views.build_taxonomy())
+    types = views.list_types()
+    tree  = views.build_taxonomy()
+    return render_template('api.html', page="api", api=tree, typelist=types)
 
 @app.route('/admin')
 def admin():

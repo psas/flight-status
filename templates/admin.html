@@ -11,14 +11,14 @@
 
     <form class="form-horizontal">
       <div class="control-group">
-        <label class="control-label">Show Flight Status of:</label>
+        <label class="control-label">Show Status of:</label>
         <div class="controls">
           <select>
             {% for site in toplist %}
                 <option>{{ site }}</option>
             {% endfor %}
           </select>
-         <span class="help-block"><span class="label label-warning">Warning!</span> This is to top level flight! Other flights do not show up anywhere in the main site.</span>
+         <span class="help-block"><span class="label label-warning">Warning!</span> This is the main site event. Other events do not show up anywhere in the site.</span>
         </div>
       </div>
       <div class="control-group">

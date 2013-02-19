@@ -1,6 +1,6 @@
 TAXONOMY = {
     "types": {
-        "launch": {"contains": ["launch_vehicle", "ground_systems"], "fields": [{"name": "launch_date", "type": "datetime"}]},
+        "launch": {"contains": ["launch_vehicle", "ground_systems"]},
         "launch_vehicle": {"contains": ["project"]},
         "ground_systems": {"contains": ["project"]},
         "project": {"contains": ["part", "software"]},
@@ -8,7 +8,5 @@ TAXONOMY = {
         "software": {"contains": ["status"]},
         "status": {"contains": []},
     },
-    "top": {
-        "site": "launch"
-    }
+    "top": "launch",
 }
