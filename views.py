@@ -5,6 +5,8 @@ def traverse(key, view):
     view += "<ul>"
     for k in models.TAXONOMY['types'][key]['contains']:
         view = traverse(k, view)
+    if len(models.TAXONOMY['types'][key]['contains']) < 1:
+        view += "<li>[Issue]</li>"
     view += "</ul></li>"
     return view
 
@@ -27,7 +29,7 @@ def list_types():
     return types
 
 def get_all(key):
-    return ["thing1", "thing2"]
+    return []
 
 def top_site_list():
     return ["bangarang"]

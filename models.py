@@ -1,9 +1,8 @@
 TAXONOMY = {
     "types": {
-        "launch": {"contains": ["launch_vehicle", "ground_system"]},
-        "launch_vehicle": {"contains": ["project"]},
-        "ground_system": {"contains": ["project"]},
-        "project": {"contains": ["part", "software"]},
+        "launch": {"contains": ["system"]},
+        "system": {"contains": ["module"]},
+        "module": {"contains": ["part", "software"]},
         "part": {"contains": []},
         "software": {"contains": []},
     },
