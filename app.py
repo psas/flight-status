@@ -16,6 +16,11 @@ def login():
 def api():
     return render_template('api.html', page="api", api=views.build_taxonomy())
 
+@app.route('/admin')
+def admin():
+    toplist = views.top_site_list()
+    return render_template('admin.html', toplist=toplist)
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),

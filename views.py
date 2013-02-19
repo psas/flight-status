@@ -19,3 +19,7 @@ def build_taxonomy():
     view += "</ul>"
 
     return view
+
+def top_site_list():
+    return ["bangarang"]
+

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Site Admin</h2>
+
+<section class="row">
+  <div class="span7 well">
+
+    <h4>Sitewide Context</h4>
+
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label">Show Flight Status of:</label>
+        <div class="controls">
+          <select>
+            {% for site in toplist %}
+                <option>{{ site }}</option>
+            {% endfor %}
+          </select>
+         <span class="help-block"><span class="label label-warning">Warning!</span> This is to top level flight! Other flights do not show up anywhere in the main site.</span>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-danger">Update Site</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</section>
+
+{% endblock content %}
