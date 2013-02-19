@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block nav %}
+
+<ul class="nav nav-pills">
+  <li><a href="/">Flight Report</a></li>
+  <li><a href="">Projects</a></li>
+  <li><a href="">TODO</a></li>
+  <li><a href="">API</a></li>
+  <li><a href="/about">About</a></li>
+  <li class="login active pull-right"><a href="#"><i class="icon-user icon-white"></i> Login</a></li>
+</ul>
+
+{% endblock nav %}
+
+{% block content %}
+
+<section id="login" class="row">
+  <header class="span12">
+    <h2>PSAS Project Memeber Log In</h2>
+  </header>
+  <div class="span7 well">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">Email</label>
+        <div class="controls">
+
+          <div class="input-prepend">
+            <span class="add-on"><i class="icon-envelope"></i></span>
+            <input class="span4" id="inputIcon" type="text" placeholder="name@domain.com">
+          </div>
+
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Password</label>
+        <div class="controls">
+
+          <div class="input-prepend">
+            <span class="add-on"><i class="icon-asterisk"></i></span>
+            <input  type="password" class="span4" id="inputPassword" placeholder="password">
+          </div>
+
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <label class="checkbox">
+            <input type="checkbox" value="remember" checked="yes"> Remember me
+          </label>
+          <a href="/" class="btn btn-primary">Sign in</a>
+          <!--<button type="submit" class="btn btn-primary">Sign in</button>-->
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock content %}
