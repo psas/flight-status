@@ -1,0 +1,7 @@
+<ul class="nav nav-pills">
+  <li {% if page == 'home' %}class="active"{% endif %}><a href="/">Flight Report</a></li>
+  <li {% if page == 'todo' %}class="active"{% endif %}><a href="/todo">TODO</a></li>
+  <li {% if page == 'api' %}class="active"{% endif %}><a href="/api">API</a></li>
+  <li {% if page == 'about' %}class="active"{% endif %}><a href="/about">About</a></li>
+  <li class="login {% if page == 'login' %}active{% endif %} pull-right"><a href="#"><i class="icon-user icon-white"></i> Login</a></li>
+</ul>

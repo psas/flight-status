@@ -1,17 +1,20 @@
 import os
 from flask import Flask, request, render_template, send_from_directory
 import views
-import psas
+import models
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html',  page="home")
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    return render_template('login.html',  page="login")
 
+@app.route('/api')
+def api():
+    return render_template('api.html', page="api", api=models.TAXONOMY)
 
 @app.route('/favicon.ico')
 def favicon():
