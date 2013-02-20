@@ -6,26 +6,49 @@
 
 <div class="accordion">
 {% for entry in collection %}
-    <div class="accordion-group">
+    <div id="{{ entry.key }}" class="accordion-group">
       <div class="accordion-heading">
-        {{entry}}
-        <a class="pull-right"><i class="icon-edit"></i></a>
+        <span class="name">{{ entry.name }}</span>
+        <span class="desc">{{ entry.desc }}</span>
+        <a class="pull-right" data-toggle="collapse" data-parent="#{{ entry.key }}" href="#edit{{ entry.key }}"><i class="icon-edit"></i></a>
       </div>
-      <div class="accordion-body collapse">
+      <div id="edit{{ entry.key }}" class="accordion-body collapse">
         <div class="accordion-inner">
             asdf
         </div>
       </div>
     </div>
 {% endfor %}
-    <div class="accordion-group">
+    <div id="addNew" class="accordion-group">
       <div class="accordion-heading">
         <span class="desc">Add new...</span>
-        <a class="pull-right"><i class="icon-plus-sign"></i></a>
+        <a class="pull-right" data-toggle="collapse" data-parent="#addNew" href="#addNewBody"><i class="icon-plus-sign"></i></a>
       </div>
-      <div class="accordion-body collapse">
+      <div id="addNewBody" class="accordion-body collapse">
         <div class="accordion-inner">
-            asdf
+          <form class="form-horizontal" method="post">
+
+              <div class="control-group">
+                <label class="control-label" for="inputName">Name</label>
+                <div class="controls">
+                  <input name="name" type="text" id="inputName" placeholder="{{ name }} Name">
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" for="inputDesc">Description</label>
+                <div class="controls">
+                  <textarea name="desc" class="span6" rows="3"></textarea>          
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="controls">
+                  <button name="key" type="submit" class="btn btn-primary" value="NEW">Save</button>
+                </div>
+              </div>
+
+          </form>
         </div>
       </div>
     </div>

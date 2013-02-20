@@ -29,7 +29,7 @@ def list_types():
     return types
 
 def get_all(key):
-    return []
+    return models.get_all_type(key)
 
 def top_site_list():
     return ["bangarang"]

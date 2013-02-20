@@ -23,10 +23,14 @@ def admin():
     toplist = views.top_site_list()
     return render_template('admin.html', toplist=toplist)
 
-@app.route('/manage/<taxonomy>')
+@app.route('/manage/<taxonomy>', methods=['GET', 'POST'])
 def manage(taxonomy):
     if taxonomy not in models.TAXONOMY['types']:
         return render_template("404.html"), 404
+    if request.method == 'POST':
+        if request.form['key'] == "NEW":
+            models.add_new(taxonomy, request.form)
+
     name = views.key2name(taxonomy)
     collection = views.get_all(taxonomy)
     return render_template('manage.html', name=name, collection=collection)
