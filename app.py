@@ -30,10 +30,14 @@ def manage(taxonomy):
     if request.method == 'POST':
         if request.form['key'] == "NEW":
             models.add_new(taxonomy, request.form)
+        elif "DELETE_" in request.form['key']:
+            key = request.form['key'][7:]
+            models.delete(taxonomy, key)
 
     name = views.key2name(taxonomy)
     collection = views.get_all(taxonomy)
-    return render_template('manage.html', name=name, collection=collection)
+    fields = views.get_fields(taxonomy)
+    return render_template('manage.html', name=name, collection=collection, fields=fields)
 
 @app.route('/favicon.ico')
 def favicon():

@@ -29,7 +29,29 @@ def list_types():
     return types
 
 def get_all(key):
-    return models.get_all_type(key)
+    entries = models.get_all_type(key)
+    return entries
+
+def get_fields(typ):
+    fields = [
+        {
+            'key':  "name",
+            'name': "Name",
+            'type': "text",
+        },
+        {
+            'key':  "desc",
+            'name': "Description",
+            'type': "textarea",
+        },
+    ]
+    if typ == models.TAXONOMY['top']:
+        fields.append({
+            'key': "date",
+            'name': "Date/Time",
+            'type': "date",
+        })
+    return fields
 
 def top_site_list():
     return ["bangarang"]

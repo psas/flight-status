@@ -32,6 +32,13 @@ def add_new(typ, form):
     r.hset(key, 'desc', desc)
     r.sadd(set_key, key)
 
+def delete(typ, key):
+    set_key = config.ORG.lower()+'-'+typ+'-list'
+
+    print key, set_key
+    r.srem(set_key, key)
+    r.delete(key)
+
 def get_all_type(typ):
     set_key = config.ORG.lower()+'-'+typ+'-list'
     keys = r.smembers(set_key)
@@ -42,4 +49,4 @@ def get_all_type(typ):
         p['name'] = r.hget(key, 'name')
         p['desc'] = r.hget(key, 'desc')
         l.append(p)
-    return l      
+    return l

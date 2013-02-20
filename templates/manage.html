@@ -14,7 +14,31 @@
       </div>
       <div id="edit{{ entry.key }}" class="accordion-body collapse">
         <div class="accordion-inner">
-            asdf
+          <form class="form-horizontal" method="post">
+
+              {% for field in fields %}
+                <div class="control-group">
+                  <label class="control-label" for="input{{ field.key }}">{{ field.name}}</label>
+                  <div class="controls">
+                    {% if field.type == "text" %}
+                        <input name="{{ field.key }}" type="text" id="input{{ field.key }}" value="{{ entry[field.key] }}">
+                    {% elif field.type == "textarea"%}
+                        <textarea name="{{ field.key}}" class="span6" rows="3">{{ entry[field.key] }}</textarea>
+                    {% elif field.type == "date"%}
+                        <input name="{{ field.key }}" type="text" id="input{{ field.key }}" value="{{ entry[field.key] }}">
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+
+              <div class="control-group">
+                <div class="controls">
+                  <button name="key" type="submit" class="btn btn-primary" value="{{ entry.key }}">Update</button>
+                  <button name="key" type="submit" class="btn btn-danger pull-right" value="DELETE_{{ entry.key }}">Delete {{ name }}</button>
+                </div>
+              </div>
+
+          </form>
         </div>
       </div>
     </div>
