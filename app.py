@@ -33,10 +33,12 @@ def manage(taxonomy):
         elif "DELETE_" in request.form['key']:
             key = request.form['key'][7:]
             models.delete(taxonomy, key)
+        else:
+            models.update(taxonomy, request.form)
 
     name = views.key2name(taxonomy)
     collection = views.get_all(taxonomy)
-    fields = views.get_fields(taxonomy)
+    fields = models.get_fields(taxonomy)
     return render_template('manage.html', name=name, collection=collection, fields=fields)
 
 @app.route('/favicon.ico')

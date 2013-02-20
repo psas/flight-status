@@ -19,6 +19,29 @@ TAXONOMY = {
 def gen_key(name):
     return name.replace(' ', '-').lower()
 
+
+def get_fields(typ):
+    fields = [
+        {
+            'key':  "name",
+            'name': "Name",
+            'type': "text",
+        },
+        {
+            'key':  "desc",
+            'name': "Description",
+            'type': "textarea",
+        },
+    ]
+    if typ == TAXONOMY['top']:
+        fields.append({
+            'key': "date",
+            'name': "Date/Time",
+            'type': "date",
+        })
+    return fields
+
+
 def add_new(typ, form):
     #TODO: sanitize
     name = form['name']
@@ -35,18 +58,25 @@ def add_new(typ, form):
 def delete(typ, key):
     set_key = config.ORG.lower()+'-'+typ+'-list'
 
-    print key, set_key
     r.srem(set_key, key)
     r.delete(key)
 
-def get_all_type(typ):
+def update(typ, form):
+    key = form['key']
+    set_key = config.ORG.lower()+'-'+typ+'-list'
+    for field in get_fields(typ):
+        r.hset(key, field['key'], form[field['key']])
+    r.sadd(set_key, key)
+
+def get_all_of_type(typ):
     set_key = config.ORG.lower()+'-'+typ+'-list'
     keys = r.smembers(set_key)
+    fields = get_fields(typ)
     l = []
     for key in keys:
         p = {}
         p['key']  = key
-        p['name'] = r.hget(key, 'name')
-        p['desc'] = r.hget(key, 'desc')
+        for field in get_fields(typ):
+            p[field['key']] = r.hget(key, field['key'])
         l.append(p)
     return l
