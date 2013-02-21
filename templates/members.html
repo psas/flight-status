@@ -1,0 +1,43 @@
+<div class="accordion">
+
+    {% for m in member.members %}
+
+    <div id="" class="accordion-group">
+      <div class="accordion-heading">
+        <span class="name">{{ m.name }}</span>
+        <span class="desc">desc</span>
+        <button type="button" class="btn btn-mini btn-danger span1 pull-right">Remove</button>
+        <button type="button" class="btn btn-mini span1 pull-right">Edit</button>
+      </div>
+    </div>
+
+    {% endfor %}
+
+    <div id="{{ entry.key }}add_member" class="accordion-group">
+      <div class="accordion-heading">
+        <span class="desc">Add {{ member.name }}...</span>
+        <a class="pull-right" data-toggle="collapse" data-parent="#{{ entry.key}}add_member" href="#do{{ entry.key }}add_member"><i class="icon-plus-sign"></i></a>
+      </div>
+      <div id="do{{ entry.key }}add_member" class="accordion-body collapse">
+        <div class="accordion-inner">
+             <form class="form-horizontal" method="post">
+
+              <div class="control-group">
+                <label class="control-label" for="inputName">{{ member.name }} name</label>
+                <div class="controls">
+                  <input name="addmember" type="text" class="span5" data-provide="typeahead">
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="controls">
+                  <button name="key" type="submit" class="btn btn-primary" value="ADD">Add</button>
+                </div>
+              </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+</div>

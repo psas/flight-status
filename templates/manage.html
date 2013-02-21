@@ -25,11 +25,35 @@
                     {% elif field.type == "textarea"%}
                         <textarea name="{{ field.key}}" class="span6" rows="3">{{ entry[field.key] }}</textarea>
                     {% elif field.type == "date"%}
-                        <input name="{{ field.key }}" type="text" id="input{{ field.key }}" value="{{ entry[field.key] }}">
+                        <input name="{{ field.key }}" type="text" class="input-small" id="input{{ field.key }}" value="{{ entry[field.key] }}">
                     {% endif %}
                   </div>
                 </div>
               {% endfor %}
+
+              <div class="control-group">
+                <label class="control-label">Memebers</label>
+                <div class="controls">
+                    <div class="accordion">
+                      <div id="{{ entry.key }}members" class="accordion-group">
+                        <div class="accordion-heading">
+                          {{ entry.n_members }} members
+                          <a class="pull-right" data-toggle="collapse" data-parent="#{{ entry.key }}members" href="#{{ entry.key }}member_list"><i class="icon-list-alt"></i></a>
+                        </div>
+                        <div id="{{ entry.key }}member_list" class="accordion-body collapse">
+                          <div class="accordion-inner">
+
+                            {% for member in entry.members %}
+                                <h4>{{ member.name }}s:</h4>
+                                {% include "members.html" %}
+                            {% endfor %}
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
 
               <div class="control-group">
                 <div class="controls">

@@ -78,5 +78,22 @@ def get_all_of_type(typ):
         p['key']  = key
         for field in get_fields(typ):
             p[field['key']] = r.hget(key, field['key'])
+        mem = []
+        nmem = 0
+        for member_type in TAXONOMY['types'][typ]['contains']:
+            m = {}
+            m['name'] = member_type
+            member_list_key = config.ORG.lower()+'-'+typ+'-children-'+member_type
+            member_list = []
+            for member_key in r.smembers(member_list_key):
+                c = {}
+                c['name'] = r.hget(member_key, 'name')
+                c['desc'] = r.hget(member_key, 'desc')
+                member_list.append(c)
+                nmem += 1
+            m['members'] = member_list
+            mem.append(m)
+        p['members'] = mem
+        p['n_members'] = nmem
         l.append(p)
     return l
