@@ -16,6 +16,9 @@
         <div class="accordion-inner">
           <form class="form-horizontal" method="post">
 
+              <!-- Hidden key for POST -->
+              <input name="key" value="{{ entry.key }}" class="hide">
+
               {% for field in fields %}
                 <div class="control-group">
                   <label class="control-label" for="input{{ field.key }}">{{ field.name}}</label>
@@ -34,6 +37,7 @@
               <div class="control-group">
                 <label class="control-label">Memebers</label>
                 <div class="controls">
+
                     <div class="accordion">
                       <div id="{{ entry.key }}members" class="accordion-group">
                         <div class="accordion-heading">
@@ -52,13 +56,14 @@
                         </div>
                       </div>
                     </div>
+
                 </div>
               </div>
 
               <div class="control-group">
                 <div class="controls">
-                  <button name="key" type="submit" class="btn btn-primary" value="{{ entry.key }}">Update</button>
-                  <button name="key" type="submit" class="btn btn-danger pull-right" value="DELETE_{{ entry.key }}">Delete {{ name }}</button>
+                  <button name="action" type="submit" class="btn btn-primary" value="UPDATE">Update</button>
+                  <button name="action" type="submit" class="btn btn-danger pull-right" value="DELETE">Delete {{ name }}</button>
                 </div>
               </div>
 
@@ -92,7 +97,7 @@
 
               <div class="control-group">
                 <div class="controls">
-                  <button name="key" type="submit" class="btn btn-primary" value="NEW">Save</button>
+                  <button name="action" type="submit" class="btn btn-primary" value="NEW">Save</button>
                 </div>
               </div>
 

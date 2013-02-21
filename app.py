@@ -28,12 +28,11 @@ def manage(taxonomy):
     if taxonomy not in models.TAXONOMY['types']:
         return render_template("404.html"), 404
     if request.method == 'POST':
-        if request.form['key'] == "NEW":
+        if request.form['action'] == "NEW":
             models.add_new(taxonomy, request.form)
-        elif "DELETE_" in request.form['key']:
-            key = request.form['key'][7:]
-            models.delete(taxonomy, key)
-        else:
+        elif request.form['action'] == "DELETE":
+            models.delete(taxonomy, request.form['key'])
+        elif request.form['action'] == "UPDATE":
             models.update(taxonomy, request.form)
 
     name = views.key2name(taxonomy)
