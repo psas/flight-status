@@ -87,6 +87,7 @@ def get_all_of_type(typ):
             member_list = []
             for member_key in r.smembers(member_list_key):
                 c = {}
+                C['key']  = memeber_key
                 c['name'] = r.hget(member_key, 'name')
                 c['desc'] = r.hget(member_key, 'desc')
                 member_list.append(c)

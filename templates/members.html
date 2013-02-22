@@ -5,7 +5,7 @@
     <div id="" class="accordion-group">
       <div class="accordion-heading">
         <span class="name">{{ m.name }}</span>
-        <span class="desc">desc</span>
+        <span class="desc">{{ m.desc }}</span>
         <button type="button" class="btn btn-mini btn-danger span1 pull-right">Remove</button>
         <button type="button" class="btn btn-mini span1 pull-right">Edit</button>
       </div>
@@ -13,24 +13,24 @@
 
     {% endfor %}
 
-    <div id="{{ entry.key }}add_member" class="accordion-group">
+    <div id="{{ member.name }}add_member" class="accordion-group">
       <div class="accordion-heading">
         <span class="desc">Add {{ member.name }}...</span>
-        <a class="pull-right" data-toggle="collapse" data-parent="#{{ entry.key}}add_member" href="#do{{ entry.key }}add_member"><i class="icon-plus-sign"></i></a>
+        <a class="pull-right" data-toggle="collapse" data-parent="#{{ member.name }}add_member" href="#do{{ member.name }}add_member"><i class="icon-plus-sign"></i></a>
       </div>
-      <div id="do{{ entry.key }}add_member" class="accordion-body collapse">
+      <div id="do{{ member.name }}add_member" class="accordion-body collapse">
         <div class="accordion-inner">
 
               <div class="control-group">
                 <label class="control-label" for="inputName">{{ member.name }} name</label>
                 <div class="controls">
-                  <input name="addmember" type="text" class="span5" data-provide="typeahead">
+                  <input name="add{{ member.name }}" type="text" class="span5" data-provide="typeahead">
                 </div>
               </div>
 
               <div class="control-group">
                 <div class="controls">
-                  <button name="key" type="submit" class="btn btn-primary" value="ADD">Add</button>
+                  <button name="action" type="submit" class="btn btn-primary" value="ADD_MEMBER{{member.name}}">Add</button>
                 </div>
               </div>
 
