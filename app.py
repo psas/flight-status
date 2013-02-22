@@ -35,7 +35,8 @@ def manage(taxonomy):
         elif request.form['action'] == "UPDATE":
             models.update(taxonomy, request.form)
         elif "ADD_MEMBER" in request.form['action']:
-            print request.form
+            member_typ = request.form['action'][10:]
+            models.add_member(taxonomy, member_typ, request.form)
 
     name = views.key2name(taxonomy)
     collection = views.get_all(taxonomy)

@@ -68,33 +68,61 @@ def update(typ, form):
         r.hset(key, field['key'], form[field['key']])
     r.sadd(set_key, key)
 
+def add_member(typ, member_typ, form):
+    parent_key = form['key']
+    child_type = member_typ
+    child_key = form[parent_key+member_typ+'key']
+
+    member_child_list_key = config.ORG.lower()+'-'+typ+'-'+parent_key+'-children'
+    r.sadd(member_child_list_key, child_key)
+    print parent_key, child_key, member_child_list_key
+
+# Return collection of instances of type typ
 def get_all_of_type(typ):
+    # The key for the list of this type
     set_key = config.ORG.lower()+'-'+typ+'-list'
-    keys = r.smembers(set_key)
-    fields = get_fields(typ)
-    l = []
+
+    keys    = r.smembers(set_key)   #list of keys in collection
+    fields  = get_fields(typ)       #list of fields for this type
+
+    collection = []
     for key in keys:
-        p = {}
-        p['key']  = key
+        entry = {}
+
+        # main fields:
+        entry['key']  = key
         for field in get_fields(typ):
-            p[field['key']] = r.hget(key, field['key'])
-        mem = []
-        nmem = 0
+            entry[field['key']] = r.hget(key, field['key'])
+
+        # get members:
+        members = []
+        num_members = 0
         for member_type in TAXONOMY['types'][typ]['contains']:
-            m = {}
-            m['name'] = member_type
-            member_list_key = config.ORG.lower()+'-'+typ+'-children-'+member_type
-            member_list = []
+            member = {}
+            member['key'] = member_type
+            member['name'] = member_type.replace('_',' ').title()
+
+            # Get the name, descriptions, and keys for typeahead
+            all_members = []
+            for k in r.smembers(config.ORG.lower()+'-'+member_type+'-list'):
+                n = r.hget(k, 'name')
+                d = r.hget(k, 'desc')
+                all_members.append(n+' ('+d+')|'+k)
+
+            member['all'] = all_members
+
+            member_list_key = config.ORG.lower()+'-'+typ+'-'+key+'-children'
+            member_collection = []
             for member_key in r.smembers(member_list_key):
-                c = {}
-                C['key']  = memeber_key
-                c['name'] = r.hget(member_key, 'name')
-                c['desc'] = r.hget(member_key, 'desc')
-                member_list.append(c)
-                nmem += 1
-            m['members'] = member_list
-            mem.append(m)
-        p['members'] = mem
-        p['n_members'] = nmem
-        l.append(p)
-    return l
+                m_entry = {}
+                m_entry['key']  = member_key
+                m_entry['name'] = r.hget(member_key, 'name')
+                m_entry['desc'] = r.hget(member_key, 'desc')
+                member_collection.append(m_entry)
+                num_members += 1
+            member['members'] = member_collection
+            members.append(member)
+        entry['members'] = members
+        entry['n_members'] = num_members
+        collection.append(entry)
+    return collection

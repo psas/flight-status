@@ -13,26 +13,47 @@
 
     {% endfor %}
 
-    <div id="{{ member.name }}add_member" class="accordion-group">
+    <div id="{{ entry.key }}{{ member.key }}add_member" class="accordion-group">
       <div class="accordion-heading">
         <span class="desc">Add {{ member.name }}...</span>
-        <a class="pull-right" data-toggle="collapse" data-parent="#{{ member.name }}add_member" href="#do{{ member.name }}add_member"><i class="icon-plus-sign"></i></a>
+        <a class="pull-right" data-toggle="collapse" data-parent="#{{ entry.key }}{{ member.key }}add_member" href="#do{{ entry.key }}{{ member.key }}add_member"><i class="icon-plus-sign"></i></a>
       </div>
-      <div id="do{{ member.name }}add_member" class="accordion-body collapse">
+      <div id="do{{ entry.key }}{{ member.key }}add_member" class="accordion-body collapse">
         <div class="accordion-inner">
 
+              <!-- Hidden key for POST -->
+              <input id="{{ entry.key }}{{ member.key }}key" name="{{ entry.key }}{{ member.key }}key" value="" class="hide">
+
               <div class="control-group">
-                <label class="control-label" for="inputName">{{ member.name }} name</label>
+                <label class="control-label" for="inputName">{{ member.key }} name</label>
                 <div class="controls">
-                  <input name="add{{ member.name }}" type="text" class="span5" data-provide="typeahead">
+                  <input id="add{{ entry.key }}{{ member.key }}" name="add{{ member.key }}" type="text" class="span5" autocomplete="off" data-provide="typeahead">
                 </div>
               </div>
 
               <div class="control-group">
                 <div class="controls">
-                  <button name="action" type="submit" class="btn btn-primary" value="ADD_MEMBER{{member.name}}">Add</button>
+                  <button name="action" type="submit" class="btn btn-primary" value="ADD_MEMBER{{ member.key }}">Add</button>
                 </div>
               </div>
+
+              <script>
+                window.onload = function () {
+                    $('#add{{ entry.key }}{{ member.key }}').typeahead({
+                        source: [
+                            {% for l in member.all %}
+                                "{{ l }}",
+                            {% endfor %}
+                        ],
+                        highlighter: function (item) { return item.split('|')[0]; },
+                        updater: function (item) {
+                            $('#{{ entry.key }}{{ member.key }}key').attr('value', item.split('|')[1]);
+                            return item.split('|')[0];
+                        },
+                        items: 5
+                    });
+                }
+              </script>
 
         </div>
       </div>
