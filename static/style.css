@@ -1,3 +1,24 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px; /* bottom = footer height */
+}
+
+footer.page {
+    background: #f7f7f7;
+    color: #777;
+    font-size: 0.9em;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+}
+
+
 .dark {
     background: #0e3262;
     color: #fff;
@@ -7,7 +28,7 @@
     background: #f7f7f7;
 }
 
-header {
+header.page {
     margin-bottom: 20px;
 }
 
