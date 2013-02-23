@@ -4,4 +4,22 @@
 
 <h2>Flight Report:</h2>
 
+<ul>
+{% for item in tree %}
+    <li><span class="name">{{ item.name }}</span><span class="desc">{{ item.desc }}</span>
+        <ul>
+            {% for child_type in item.members %}
+                <li>{{ child_type.name }}s:
+                    <ul>
+                        {% for child in child_type.members %}
+                            <li><span class="name">{{ child.name }}</span><span class="desc">{{ child.desc }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endfor %}
+</ul>
+
 {% endblock content %}
