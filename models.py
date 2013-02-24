@@ -73,7 +73,7 @@ def add_member(typ, member_typ, form):
     child_type = member_typ
     child_key = form[parent_key+member_typ+'key']
 
-    member_child_list_key = config.ORG.lower()+'-'+typ+'-'+parent_key+'-children'
+    member_child_list_key = parent_key+'-'+child_type+'-children'
     r.sadd(member_child_list_key, child_key)
     print parent_key, child_key, member_child_list_key
 
@@ -111,7 +111,7 @@ def get_all_of_type(typ):
 
             member['all'] = all_members
 
-            member_list_key = config.ORG.lower()+'-'+typ+'-'+key+'-children'
+            member_list_key = key+'-'+member_type+'-children'
             member_collection = []
             for member_key in r.smembers(member_list_key):
                 m_entry = {}
