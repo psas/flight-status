@@ -38,21 +38,17 @@
               </div>
 
               <script>
-                window.onload = function () {
-                    $('#add{{ entry.key }}{{ member.key }}').typeahead({
-                        source: [
-                            {% for l in member.all %}
-                                "{{ l }}",
-                            {% endfor %}
-                        ],
-                        highlighter: function (item) { return item.split('|')[0]; },
-                        updater: function (item) {
-                            $('#{{ entry.key }}{{ member.key }}key').attr('value', item.split('|')[1]);
-                            return item.split('|')[0];
-                        },
-                        items: 5
-                    });
-                }
+                $('#add{{ entry.key }}{{ member.key }}').typeahead({
+                    source: [
+                        {% for l in member.all %}"{{ l }}",{% endfor %}
+                    ],
+                    highlighter: function (item) { return item.split('|')[0]; },
+                    updater: function (item) {
+                        $('#{{ entry.key }}{{ member.key }}key').attr('value', item.split('|')[1]);
+                        return item.split('|')[0];
+                    },
+                    items: 5
+                });
               </script>
 
         </div>
