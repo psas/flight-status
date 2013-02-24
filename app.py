@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    collection = views.get_all('system')
-    return render_template('index.html', page="home", tree=collection)
+    tree = views.get_current_tree()
+    return render_template('index.html', page="home", tree=tree)
 
 @app.route('/login')
 def login():

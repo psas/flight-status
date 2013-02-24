@@ -77,6 +77,18 @@ def add_member(typ, member_typ, form):
     r.sadd(member_child_list_key, child_key)
     print parent_key, child_key, member_child_list_key
 
+def get_children(typ, key):    
+    member_list_key = key+'-'+typ+'-children'
+    member_collection = []
+    for member_key in r.smembers(member_list_key):
+        m_entry = {}
+        m_entry['key']  = member_key
+        m_entry['name'] = r.hget(member_key, 'name')
+        m_entry['desc'] = r.hget(member_key, 'desc')
+        member_collection.append(m_entry)
+
+    return member_collection 
+
 # Return collection of instances of type typ
 def get_all_of_type(typ):
     # The key for the list of this type
@@ -94,7 +106,7 @@ def get_all_of_type(typ):
         for field in get_fields(typ):
             entry[field['key']] = r.hget(key, field['key'])
 
-        # get members:
+         # get members:
         members = []
         num_members = 0
         for member_type in TAXONOMY['types'][typ]['contains']:
@@ -111,17 +123,10 @@ def get_all_of_type(typ):
 
             member['all'] = all_members
 
-            member_list_key = key+'-'+member_type+'-children'
-            member_collection = []
-            for member_key in r.smembers(member_list_key):
-                m_entry = {}
-                m_entry['key']  = member_key
-                m_entry['name'] = r.hget(member_key, 'name')
-                m_entry['desc'] = r.hget(member_key, 'desc')
-                member_collection.append(m_entry)
-                num_members += 1
-            member['members'] = member_collection
+            member['members'] = get_children(member_type, key)
+            num_members += len(members['members'])
             members.append(member)
+
         entry['members'] = members
         entry['n_members'] = num_members
         collection.append(entry)
