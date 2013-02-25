@@ -39,6 +39,14 @@ def get_fields(typ):
             'name': "Date/Time",
             'type': "date",
         })
+
+    if len(TAXONOMY['types'][typ]['contains']) == 0:
+        fields.append({
+            'key': "status",
+            'name': "Status",
+            'type': "status",
+        })
+
     return fields
 
 
