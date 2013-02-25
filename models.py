@@ -124,7 +124,7 @@ def get_all_of_type(typ):
             member['all'] = all_members
 
             member['members'] = get_children(member_type, key)
-            num_members += len(members['members'])
+            num_members += len(member['members'])
             members.append(member)
 
         entry['members'] = members
