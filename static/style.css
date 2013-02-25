@@ -97,3 +97,9 @@ nav .nav li a:hover {
     border-right: 1px solid #999;
     float: right;
 }
+
+.status {
+    width: 60px;
+    display: block;
+    float: left;
+}

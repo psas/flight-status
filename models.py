@@ -91,8 +91,14 @@ def get_children(typ, key):
     for member_key in r.smembers(member_list_key):
         m_entry = {}
         m_entry['key']  = member_key
-        m_entry['name'] = r.hget(member_key, 'name')
-        m_entry['desc'] = r.hget(member_key, 'desc')
+        for field in get_fields(typ):
+            m_entry[field['key']] = r.hget(member_key, field['key'])
+            if field['key'] == "status":
+                try:
+                    m_entry['status'] = int(m_entry['status'])
+                except:
+                    m_entry['status'] = 0
+                print  m_entry['status']
         member_collection.append(m_entry)
 
     return member_collection 

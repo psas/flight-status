@@ -24,6 +24,17 @@
     {% else %}
         <div class="accordion-group">
           <div class="accordion-heading">
+            <span class="status">
+            {% if item.status is defined %}
+                {% if item.status < 1 %}
+                    <span class="label">N</span>
+                {% elif item.status < 90 %}
+                    <span class="label label-important">{{ item.status }}%</span>
+                {% elif item.status == 100 %}
+                    <span class="label label-success">Go!</span>
+                {% endif %}
+            {% endif %}
+            </span>
             <span class="name">{{ item.name }}</span><span class="desc">{{ item.desc }}</span>
           </div>
         </div>
