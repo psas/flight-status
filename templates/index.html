@@ -4,23 +4,31 @@
 
 <h2>Flight Report:</h2>
 
+<div class="accordion">
 {% for item in tree recursive %}
     {% if item.list %}
-      <ul>
-        <li><h4>{{item.name}}s:</h4>
-            <ul>
-            {{ loop(item.list) }}
-            </ul>
-        </li>
-      </ul>
+          <h6>{{ item.name }}s:</h6>
+          {{ loop(item.list) }}
+    {% elif item.children %}
+        <div id="{{ item.key }}" class="accordion-group">
+          <div class="accordion-heading">
+            <span class="name">{{ item.name }}</span><span class="desc">{{ item.desc }}</span>
+            <a class="pull-right" data-toggle="collapse" data-parent="#{{ item.key }}" href="#show{{ item.key }}"><i class="icon-chevron-down"></i></a>
+          </div>
+          <div id="show{{ item.key }}" class="accordion-body">
+            <div class="accordion-inner">
+                {{ loop(item.children) }}
+            </div>
+          </div>
+        </div>
     {% else %}
-        {% if item.name %}
-        <li><span class="name">{{ item.name }}</span><span class="desc">{{ item.desc }}</span></li>
-        {% endif %}
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <span class="name">{{ item.name }}</span><span class="desc">{{ item.desc }}</span>
+          </div>
+        </div>
     {% endif %}
-    {% if item.children %}
-        {{ loop(item.children) }}
-    {% endif %}
-  {% endfor %}
+{% endfor %}
+</div>
 
-{% endblock content %}git 
+{% endblock content %}

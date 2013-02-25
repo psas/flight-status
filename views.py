@@ -50,7 +50,7 @@ def traverse_tree(typ, key, tree):
 def get_tree(typ, key):
     tree = {}
     traverse_tree(typ, key, tree)
-    return [tree]
+    return tree['children']
 
 def get_current_tree():
     tree = get_tree('launch', 'psas-launch-l-10')
