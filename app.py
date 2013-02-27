@@ -13,6 +13,11 @@ def index():
 def login():
     return render_template('login.html', page="login")
 
+@app.route('/about')
+def about():
+    return render_template('about.html', page="about")
+
+
 @app.route('/api')
 def api():
     types = views.list_types()
