@@ -34,6 +34,8 @@ def get_all(key):
 
 def traverse_tree(typ, key, tree):
     ctypes = []
+    total_status = 0
+    n_members = 0
     for child_type in models.TAXONOMY['types'][typ]['contains']:
         c = {}
         c['key'] = child_type
@@ -43,8 +45,13 @@ def traverse_tree(typ, key, tree):
             break
         c['list'] = children
         for child in children:
+            if "status" in child:
+                total_status += child['status']
+            n_members += 1
             traverse_tree(child_type, child['key'], child)
         ctypes.append(c)
+    if n_members > 0:
+        tree['status'] = total_status / float(n_members)
     tree['children'] = ctypes
 
 def get_tree(typ, key):

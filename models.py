@@ -98,7 +98,6 @@ def get_children(typ, key):
                     m_entry['status'] = int(m_entry['status'])
                 except:
                     m_entry['status'] = 0
-                print  m_entry['status']
         member_collection.append(m_entry)
 
     return member_collection 
