@@ -119,7 +119,7 @@ def get_all_of_type(typ):
         for field in get_fields(typ):
             entry[field['key']] = r.hget(key, field['key'])
 
-        if len(TAXONOMY['types'][typ]['contains']) > 1:
+        if len(TAXONOMY['types'][typ]['contains']) > 0:
             entry['allow-members'] = True
         else:
             entry['allow-members'] = False
