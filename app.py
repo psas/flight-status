@@ -24,6 +24,12 @@ def admin():
     toplist = views.top_site_list()
     return render_template('admin.html', toplist=toplist)
 
+@app.route('/todo')
+def todo():
+    active = views.get_all_base()
+    return render_template('todo.html', page="todo", todolist=active)
+
+
 @app.route('/manage/<taxonomy>', methods=['GET', 'POST'])
 def manage(taxonomy):
     if taxonomy not in models.TAXONOMY['types']:

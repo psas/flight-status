@@ -18,7 +18,7 @@
                     <span class="label">N</span>
                 {% elif item.status < 90 %}
                     <span class="label label-important">{{ item.status }}%</span>
-                {% elif item.status >= 90 %}
+                {% elif item.status < 100 %}
                     <span class="label label-warning">{{ item.status }}%</span>
                 {% elif item.status == 100 %}
                     <span class="label label-success">Go!</span>

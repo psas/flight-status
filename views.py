@@ -32,6 +32,25 @@ def get_all(key):
     entries = models.get_all_of_type(key)
     return entries
 
+def get_all_base():
+    bases = []
+    for key in models.TAXONOMY['types']:
+        if len(models.TAXONOMY['types'][key]['contains']) == 0:
+            items = []
+            for item in models.get_all_of_type(key):
+                i = {}
+                i['name'] = item['name']
+                i['desc'] = item['desc']
+                try:
+                    i['status'] = float(item['status'])
+                except:
+                    i['status'] = 0
+                if i['status'] < 100:
+                    items.append(i)
+            items = sorted(items, key=lambda item: item['status'])
+            bases.append({'key': key, 'name': key2name(key), 'list': items})
+    return bases
+
 def traverse_tree(typ, key, tree):
     ctypes = []
     total_status = 0
