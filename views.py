@@ -61,7 +61,7 @@ def traverse_tree(typ, key, tree):
         c['name'] = key2name(child_type)
         children = models.get_children(child_type, key)
         if len(children) < 1:
-            break
+            continue
         c['list'] = children
         for child in children:
             if "status" in child:
