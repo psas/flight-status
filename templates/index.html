@@ -13,6 +13,7 @@
         <div id="{{ item.key }}" class="accordion-group">
           <div class="accordion-heading">
             <span class="status">
+            {{ item.status }}
             {% if item.status is defined %}
                 {% if item.status < 1 %}
                     <span class="label">N</span>
@@ -28,7 +29,7 @@
             <span class="name">{{ item.name }}</span><span class="desc">{{ item.desc }}</span>
             <a class="pull-right" data-toggle="collapse" data-parent="#{{ item.key }}" href="#show{{ item.key }}"><i class="icon-chevron-down"></i></a>
           </div>
-          <div id="show{{ item.key }}" class="accordion-body">
+          <div id="show{{ item.key }}" class="accordion-body indent">
             <div class="accordion-inner">
                 {{ loop(item.children) }}
             </div>

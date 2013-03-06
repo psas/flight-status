@@ -71,6 +71,10 @@ nav .nav li a:hover {
     font-style: italic;
 }
 
+.indent {
+    margin-left: 50px;
+}
+
 .accordion-heading {
     padding: 8px 15px;
 }
