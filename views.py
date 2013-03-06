@@ -64,10 +64,10 @@ def traverse_tree(typ, key, tree):
             continue
         c['list'] = children
         for child in children:
-            if "status" in child:
-                total_status += child['status']
             n_members += 1
             traverse_tree(child_type, child['key'], child)
+            if "status" in child:
+                total_status += child['status']
         ctypes.append(c)
     if n_members > 0:
         tree['status'] = total_status / float(n_members)
