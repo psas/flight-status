@@ -1,22 +1,37 @@
 import os
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, request, render_template, send_from_directory, session, redirect, url_for
 import views
 import models
+import user
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     tree = views.get_current_tree()
-    return render_template('index.html', page="home", tree=tree)
+    un = ""
+    if 'username' in session:
+        un = session['username']
+    return render_template('index.html', page="home", tree=tree, user=un)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form['username'].strip()
+        password = request.form['password'].strip()
+        if user.auth(username, password):
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+
     return render_template('login.html', page="login")
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
 
 @app.route('/about')
 def about():
     return render_template('about.html', page="about")
-
 
 @app.route('/api')
 def api():
@@ -61,5 +76,7 @@ def favicon():
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == "__main__":
+    # DEBUG ONLY!!!!
     app.debug = True
+    app.secret_key = '\xa6\xe0\xe4AJ\xf4\x8e\x82\xfcU*l\x8bh(E~zK\x04\x1b\x16UA'
     app.run(host='0.0.0.0') # Enable local network access
