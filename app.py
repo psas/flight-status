@@ -1,5 +1,6 @@
 import os
 from flask import Flask, request, render_template, send_from_directory, session, redirect, url_for
+import secrets
 import views
 import models
 import user
@@ -78,5 +79,5 @@ def favicon():
 if __name__ == "__main__":
     # DEBUG ONLY!!!!
     app.debug = True
-    app.secret_key = '\xa6\xe0\xe4AJ\xf4\x8e\x82\xfcU*l\x8bh(E~zK\x04\x1b\x16UA'
+    app.secret_key = secrets.appkey
     app.run(host='0.0.0.0') # Enable local network access

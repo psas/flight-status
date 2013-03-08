@@ -8,7 +8,8 @@
   <li {% if page == 'about' %}class="active"{% endif %}><a href="/about">About</a></li>
   {% if user %}
   <li class="login pull-right"><a href="/logout"><i class="icon-trash icon-white"></i> Logout</a></li>
-  {% else %}
+  <li class="pull-right">logged in as <em>{{ user }}</em></li>
+    {% else %}
   <li class="login {% if page == 'login' %}active{% endif %} pull-right"><a href="/login"><i class="icon-user icon-white"></i> Login</a></li>
   {% endif %}
 </ul>
